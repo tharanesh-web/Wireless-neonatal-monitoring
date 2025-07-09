@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neonatal Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body class="p-5">
+    <div class="container">
+        <h2 class="mb-4">👶 Neonatal Health Monitoring Dashboard</h2>
+
+        <form method="POST" enctype="multipart/form-data" class="mb-4">
+            <label>Upload Patient CSV File</label>
+            <input type="file" name="csv_file" class="form-control-file" required>
+            <button type="submit" class="btn btn-primary mt-2">Upload & Predict</button>
+        </form>
+
+        {% if dataset_head %}
+        <div class="mb-3">
+            <h5>📁 Data Preview (Head)</h5>
+            {{ dataset_head | safe }}
+            <a href="/full-data" class="btn btn-outline-info mt-2">🔍 View Full Data</a>
+        </div>
+        {% endif %}
+
+        {% if high_risk %}
+        <div class="alert alert-danger" role="alert">
+            ⚠️ <strong>High Risk detected!</strong> Please review the mitigation actions below:
+            {{ mitigation | safe }}
+        </div>
+        {% endif %}
+
+        {% if predictions %}
+        <div class="mt-4">
+            <h5>📊 Prediction Summary</h5>
+            {{ predictions | safe }}
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h6>📉 Prediction Distribution</h6>
+                <img src="{{ plot_paths['dist'] }}" class="img-fluid border rounded">
+            </div>
+            <div class="col-md-6">
+                <h6>🧮 Confusion Matrix</h6>
+                <img src="{{ plot_paths['confusion'] }}" class="img-fluid border rounded">
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h6>🎯 F1 Score by Risk Category</h6>
+            <img src="{{ plot_paths['f1score'] }}" class="img-fluid border rounded">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

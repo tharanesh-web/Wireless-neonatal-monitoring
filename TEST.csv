@@ -1,0 +1,10 @@
+Timestamp,ECG,BPM,SpO2,Temp,Risk Category
+11278,0,0,0,31.44,High Risk
+12340,153,0,0,31.5,High Risk
+13403,178,0,0,31.5,High Risk
+14464,349,0,0,31.5,High Risk
+15528,418,0,0,31.5,High Risk
+16592,660,0,0,31.5,High Risk
+17655,862,0,0,31.56,High Risk
+18717,875,0,0,31.5,High Risk
+19780,875,0,0,31.56,High Risk
